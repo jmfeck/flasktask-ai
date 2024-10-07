@@ -1,0 +1,31 @@
+{% extends "general/base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2>My Apps</h2>
+    <div class="row">
+        {% for app in my_apps %}
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">{{ app.name }}</h5>
+                    <p class="card-text">{{ app.description }}</p>
+
+                    <!-- Button to launch the app -->
+                    <a href="{{ url_for('launch_app', app_id=app.id) }}" class="btn btn-primary">Launch App</a>
+
+                    <!-- Toggle favorite status -->
+                    <form action="{{ url_for('toggle_favorite', app_id=app.id) }}" method="POST" style="display:inline;">
+                        {% if app.id in session['favorites'] %}
+                        <button type="submit" class="btn btn-warning">Unfavorite</button>
+                        {% else %}
+                        <button type="submit" class="btn btn-success">Favorite</button>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

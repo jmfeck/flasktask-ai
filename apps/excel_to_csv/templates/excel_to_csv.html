@@ -1,0 +1,18 @@
+{% extends "general/base.html" %}
+
+{% block content %}
+    <h2>Excel to CSV Converter</h2>
+    <p>You have {{ credits }} credits remaining.</p>
+    <form action="" method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="file" class="form-label">Upload Excel files</label>
+            <input type="file" class="form-control" id="file" name="file" multiple required>
+        </div>
+        <button type="submit" class="btn btn-primary">Convert to CSV (1 credit)</button>
+    </form>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <div class="alert alert-info mt-3">{{ messages[0] }}</div>
+        {% endif %}
+    {% endwith %}
+{% endblock %}

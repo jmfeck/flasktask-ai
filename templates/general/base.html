@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlaskTask - AdminLTE</title>
+
+    <!-- AdminLTE CSS from CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
+    <!-- FontAwesome from CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Bootstrap from CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+
+    <!-- Custom CSS can be added here -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="{{ url_for('my_apps') }}" class="nav-link">Home</a>
+                </li>
+            </ul>
+
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                <!-- User Account -->
+                <li class="nav-item dropdown user-menu">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                        <img src="{{ url_for('static', filename='user_icon.png') }}" class="user-image img-circle elevation-2" alt="User Image">
+                        <span class="d-none d-md-inline">{{ session['user'] }} ({{ session['credits'] }} credits)</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <!-- User image -->
+                        <li class="user-header bg-primary">
+                            <img src="{{ url_for('static', filename='user_icon.png') }}" class="img-circle elevation-2" alt="User Image">
+                            <p>{{ session['user'] }} - {{ session['credits'] }} Credits</p>
+                        </li>
+                        <!-- Menu Footer-->
+                        <li class="user-footer">
+                            <a href="{{ url_for('profile') }}" class="btn btn-default btn-flat">Profile</a>
+                            <a href="{{ url_for('logout') }}" class="btn btn-default btn-flat float-right">Sign out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="{{ url_for('my_apps') }}" class="brand-link">
+                <img src="https://adminlte.io/themes/v3/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3">
+                <span class="brand-text font-weight-light">FlaskTask</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="{{ url_for('static', filename='user_icon.png') }}" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="{{ url_for('profile') }}" class="d-block">{{ session['user'] }}</a>
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <li class="nav-item">
+                            <a href="{{ url_for('favorite_apps') }}" class="nav-link">
+                                <i class="nav-icon fas fa-heart"></i>
+                                <p>Favorite Apps</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url_for('my_apps') }}" class="nav-link">
+                                <i class="nav-icon fas fa-th"></i>
+                                <p>My Apps</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url_for('app_store') }}" class="nav-link">
+                                <i class="nav-icon fas fa-shopping-cart"></i>
+                                <p>FlaskApp Store</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url_for('buy_credits') }}" class="nav-link">
+                                <i class="nav-icon fas fa-credit-card"></i>
+                                <p>Buy Credits</p>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    {% block content %}{% endblock %}
+                </div>
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+
+        <!-- Footer -->
+        <footer class="main-footer">
+            <div class="float-right d-none d-sm-block">
+                <b>Version</b> 3.1
+            </div>
+            <strong>Copyright &copy; 2024 <a href="#">FlaskTask.ai</a>.</strong> All rights reserved.
+        </footer>
+    </div>
+    <!-- ./wrapper -->
+
+    <!-- AdminLTE JS from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
+    <!-- jQuery from CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JS from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
